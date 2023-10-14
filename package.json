@@ -20,8 +20,10 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
+    "@vee-validate/nuxt": "^4.11.8",
     "@vueuse/core": "^10.5.0",
     "@vueuse/nuxt": "^10.5.0",
-    "pinia": "^2.1.7"
+    "pinia": "^2.1.7",
+    "vuedraggable": "^4.1.0"
   }
 }

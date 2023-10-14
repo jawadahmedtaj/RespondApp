@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
-    '@invictus.codes/nuxt-vuetify', 'nuxt-icon', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'
+    '@invictus.codes/nuxt-vuetify', 'nuxt-icon', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt', '@vee-validate/nuxt'
   ],
   devtools: { enabled: true },
   vuetify: {
