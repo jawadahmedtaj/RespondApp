@@ -8,7 +8,13 @@
                     </template>
                 </draggable>
             </v-col>
-            <v-col class="d-flex align-center">2</v-col>
+            <v-col class="d-flex align-center">
+                <draggable v-model="mySecondArray" group="notpeople" @start="drag = true" @end="drag = false" item-key="id" class="h-100 w-100">
+                    <template #item="{ element }">
+                        <div class="text-h1">{{ element.name }}</div>
+                    </template>
+                </draggable>
+            </v-col>
             <v-col class="d-flex align-center">3</v-col>
         </v-row>
     </v-container>
@@ -19,6 +25,7 @@ import draggable from 'vuedraggable'
 
 const drag = ref(false)
 const myArray = ref([{ name: 'a', id: 0 }, { name: 'b', id: 1 }, { name: 'c', id: 2 }, { name: 'd', id: 3 }, { name: 'e', id: 4 }, { name: 'f', id: 5 }, { name: 'g', id: 6 }])
+const mySecondArray = ref([])
 
 </script>
 
