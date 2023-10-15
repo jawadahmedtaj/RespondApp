@@ -21,10 +21,12 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.11",
-    "@vee-validate/nuxt": "^4.11.8",
+    "@vuepic/vue-datepicker": "^7.2.0",
     "@vueuse/core": "^10.5.0",
     "@vueuse/nuxt": "^10.5.0",
+    "moment": "^2.29.4",
     "pinia": "^2.1.7",
+    "vue-uuid": "^3.0.0",
     "vuedraggable": "^4.1.0"
   }
 }

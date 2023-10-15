@@ -1,0 +1,2 @@
+export const isRequired = (value) => !!value || 'This field is required.'
+export const sizeExceeded = (value) => !value || !value.length || value[0].size < 2000000 || 'Image size should be less than 2 MB!'

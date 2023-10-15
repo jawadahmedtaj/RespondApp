@@ -2,16 +2,37 @@ import { defineStore } from "pinia"
 
 export const useLists = defineStore('Lists', {
     state: () => ({
-        tasks: [
-        ],
+        tasks: []
     }),
     getters: {
         getTasks: (state) => state.tasks,
+        getTaskById: (state) => (id) => {
+            return state.tasks.find(task => task.id === id) || null
+        }
     },
     actions: {
-        setTasks(data) {
-            this.tasks = data
+        addTask(payload) {
+            this.tasks.push(payload)
+        },
+        setTask(payload) {
+            this.tasks.splice(0)
+            this.tasks.push(...payload)
+        },
+        updateTask(payload) {
+            const task = this.getTaskById(payload.id)
+            if (task) {
+                Object.assign(task, payload)
+            }
+        },
+        deleteTask(payload) {
+            const task = this.getTaskById(payload.id)
+            if (task) {
+                const index = this.getTasks.findIndex(task => task.id === payload.id)
+                this.getTasks.splice(index, 1)
+            }
         },
     },
-    persist: true
+    persist: {
+        storage: persistedState.localStorage,
+    },
 })
