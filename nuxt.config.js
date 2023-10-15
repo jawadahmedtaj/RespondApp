@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
   modules: [
     'vuetify-nuxt-module', 'nuxt-icon', '@pinia/nuxt', '@pinia-plugin-persistedstate/nuxt'
   ],

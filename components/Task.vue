@@ -26,14 +26,17 @@
                 </v-img>
                 <v-file-input variant="outlined" v-model="openImage" label="Attachment" accept="image/*"
                     :rules="[sizeExceeded]" />
+                    <v-combobox variant="outlined" v-model="task.tags" label="Add tags" multiple chips />
                 <vue-date-picker placeholder="Due Date" :teleport="true" :min-date="new Date()" v-model="task.dueDate"
                     :state="!!task.dueDate" auto-apply />
             </v-card-text>
             <v-card-actions>
                 <v-btn v-if="isEditing" color="warning" @click.prevent="deleteTask">Delete Task</v-btn>
                 <v-spacer></v-spacer>
-                <v-btn :disabled="!form || !task.dueDate" type="submit" color="primary" v-if="!isEditing">Create Task</v-btn>
-                <v-btn text :disabled="!form || !task.dueDate" color="primary" @click.prevent="updateTask" v-else>Update Task</v-btn>
+                <v-btn :disabled="!form || !task.dueDate" type="submit" color="primary" v-if="!isEditing">Create
+                    Task</v-btn>
+                <v-btn text :disabled="!form || !task.dueDate" color="primary" @click.prevent="updateTask" v-else>Update
+                    Task</v-btn>
                 <v-btn color="warning" to="/">Cancel</v-btn>
             </v-card-actions>
         </v-form>
@@ -60,16 +63,13 @@ const emit = defineEmits(['update:modelValue'])
 
 const task = computed({
     get() {
+        if (props.modelValue && props.modelValue.attachment) {
+            image.value = props.modelValue.attachment
+        }
         return props.modelValue
     },
     set(value) {
         emit('update:modelValue', value)
-    }
-})
-
-onMounted(() => {
-    if (task.value && task.value.attachment) {
-        image.value = task.value.attachment
     }
 })
 

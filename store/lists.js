@@ -6,6 +6,9 @@ export const useLists = defineStore('Lists', {
     }),
     getters: {
         getTasks: (state) => state.tasks,
+        getPending: (state) => state.tasks.filter(task => task.type === 'Pending'),
+        getInProgress: (state) => state.tasks.filter(task => task.type === 'In Progress'),
+        getDone: (state) => state.tasks.filter(task => task.type === 'Done'),
         getTaskById: (state) => (id) => {
             return state.tasks.find(task => task.id === id) || null
         }
