@@ -13,7 +13,8 @@ const task = ref({
     description: '',
     type: undefined,
     dueDate: '',
-    tags: []
+    tags: [],
+    comments: []
 })
 </script>
 

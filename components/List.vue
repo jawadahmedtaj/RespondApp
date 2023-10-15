@@ -3,17 +3,23 @@
         style="min-height: 25%;">
         <template #item="{ element, index }">
             <v-card @click.prevent="openTask(element)" :class="{ 'mt-2': index !== 0, 'bg-success': completed }">
-                <v-card-title>
-                    {{ element.title }}
-                </v-card-title>
-                <v-card-subtitle>
-                    {{ element.description }}
-                </v-card-subtitle>
-                <v-card-text>
-                    <v-chip v-for="tag in element.tags" :key="tag" :color="colorRandomizer()">
-                        {{ tag }}
-                    </v-chip>
-                </v-card-text>
+                <div class="d-flex flex-no-wrap justify-space-between">
+                    <div> 
+                        <v-card-title>
+                            {{ element.title }}
+                        </v-card-title>
+                        <v-card-subtitle>
+                            {{ element.description }}
+                        </v-card-subtitle>
+                        <v-card-text>
+                            <v-chip v-for="tag in element.tags" :key="tag" :color="colorRandomizer()">
+                                {{ tag }}
+                            </v-chip>
+                        </v-card-text>
+                    </div>
+                    <v-img cover v-if="element.attachment" :src="element.attachment" max-height="200px" max-width="100">
+                    </v-img>
+                </div>
             </v-card>
         </template>
     </draggable>

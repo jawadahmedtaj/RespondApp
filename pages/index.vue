@@ -67,31 +67,39 @@ const filters = ref({
     pending: false,
     processing: false,
     done: false,
-    startsAfter: undefined,
-    endsBefore: undefined,
+    taskInThisTime: undefined,
     search: ''
 })
 
 const filteredTasks = computed(() => {
-    
     const tasks = listStore.getTasks.filter(task => {
-        if (filters.search) {
-            return task.title.toLowerCase().includes(filters.search.toLowerCase()) || task.description.toLowerCase().includes(filters.search.toLowerCase()) || task.tags.some(tag => tag.toLowerCase().includes(filters.search.toLowerCase()))
+        if (!filters.value.pending && !filters.value.processing && !filters.value.done) {
+            return true
+        }
+        if (filters.value.pending && task.type === 'Pending') {
+            return task.type === 'Pending'
+        }
+        else if (filters.value.processing && task.type === 'In Progress') {
+            return task.type === 'In Progress'
+        }
+         else if (filters.value.done && task.type === 'Done') {
+            return task.type === 'Done'
+        }
+        else return false
+    }).filter(task => {
+        if (filters.value.search) {
+            return task.title.toLowerCase().includes(filters.value.search.toLowerCase()) || task.description.toLowerCase().includes(filters.value.search.toLowerCase()) || task.tags.some(tag => tag.toLowerCase().includes(filters.value.search.toLowerCase()))
         }
         return true
     }).filter(task => {
-        if (filters.startsAfter) {
-            return moment(task.dueDate).isAfter(filters.startsAfter)
-        }
-        return true
-    }).filter(task => {
-        if (filters.endsBefore) {
-            return moment(task.dueDate).isBefore(filters.endsBefore)
+        if (filters.value.taskInThisTime) {
+            return moment(task.creationTime).isBefore(filters.value.taskInThisTime) && moment(task.dueDate).isAfter(filters.value.taskInThisTime)
         }
         return true
     })
 
-    return listStore.getTasks})
+    return tasks
+})
 
 const pending = computed({
     get() {
